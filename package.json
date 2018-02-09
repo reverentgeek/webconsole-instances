@@ -1,0 +1,32 @@
+{
+  "name": "joyent-instance-console",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "license": "MPL-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joyent/instance-console.git"
+  },
+  "bugs": {
+    "url": "https://github.com/joyent/instance-console/issues"
+  },
+  "engines": {
+    "node": ">=8.9.0"
+  },
+  "scripts": {
+    "lint": "belly-button -f"
+  },
+  "dependencies": {
+    "brule": "3.1.0",
+    "cloudapi-gql": "4.6.0",
+    "hapi": "17.2.0",
+    "hapi-triton-auth": "1.0.0",
+    "joyent-navigation": "1.0.1",
+    "my-joy-beta": "1.0.1",
+    "rollover": "1.0.0"
+  },
+  "devDependencies": {
+    "belly-button": "4.x.x"
+  }
+}
