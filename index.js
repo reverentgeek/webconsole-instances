@@ -1,7 +1,13 @@
 'use strict';
+
 const Brule = require('brule');
 const Hapi = require('hapi');
 const Rollover = require('rollover');
+const { homedir } = require('os');
+const { join } = require('path');
+
+process.env.SDC_KEY_PATH =
+  process.env.SDC_KEY_PATH || join(homedir(), '.ssh/id_rsa');
 
 const Sso = require('hapi-triton-auth');
 const Ui = require('my-joy-beta');
