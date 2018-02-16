@@ -22,8 +22,8 @@
     "cloudapi-gql": "4.6.0",
     "hapi": "17.2.0",
     "hapi-triton-auth": "1.0.0",
-    "joyent-navigation": "1.0.5",
-    "my-joy-beta": "1.0.7",
+    "joyent-navigation": "1.0.7",
+    "my-joy-beta": "1.0.10",
     "rollover": "1.0.0"
   },
   "devDependencies": {
