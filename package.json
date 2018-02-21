@@ -23,7 +23,7 @@
     "hapi": "17.2.0",
     "hapi-triton-auth": "1.0.0",
     "joyent-navigation": "1.0.7",
-    "my-joy-beta": "1.0.10",
+    "my-joy-beta": "1.0.11",
     "rollover": "1.0.0"
   },
   "devDependencies": {

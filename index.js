@@ -29,7 +29,12 @@ const {
 
 const server = Hapi.server({
   port: PORT,
-  host: '127.0.0.1'
+  host: '127.0.0.1',
+  debug: { request: ['error'] }
+});
+
+process.on('unhandledRejection', (err) => {
+  server.log(['error'], err);
 });
 
 async function main () {
@@ -82,10 +87,6 @@ async function main () {
   ]);
 
   server.auth.default('sso');
-
-  process.on('unhandledRejection', (err) => {
-    server.log(['error'], err);
-  });
 
   await server.start();
   console.log(`server started at http://localhost:${server.info.port}`);
