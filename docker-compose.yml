@@ -1,0 +1,36 @@
+version: '2.1'
+
+services:
+  consul:
+    image: autopilotpattern/consul:1.0.0r43
+    command: >
+      /usr/local/bin/containerpilot
+    env_file:
+      - _env_consul
+    restart: always
+    mem_limit: 512m
+    network_mode: bridge
+    labels:
+      - triton.cns.services=instance-console-consul
+    expose:
+      - 9090
+      - 8500
+
+  instance-console:
+    image: cjihrig/instance-console:1.0.2
+    restart: always
+    mem_limit: 1g
+    network_mode: bridge
+    labels:
+      - triton.cns.services=instance-console
+    env_file:
+      - _env
+      - _env_consul
+    environment:
+      - CONSUL=consul
+      - NODE_ENV=production
+    links:
+      - consul:consul
+    ports:
+      - 80:80
+      - 443:443

@@ -18,6 +18,8 @@ const {
   PORT = 3069,
   COOKIE_PASSWORD,
   COOKIE_DOMAIN,
+  COOKIE_SECURE,
+  COOKIE_HTTP_ONLY,
   SDC_KEY_PATH,
   SDC_ACCOUNT,
   SDC_KEY_ID,
@@ -35,6 +37,7 @@ const server = Hapi.server({
 
 process.on('unhandledRejection', (err) => {
   server.log(['error'], err);
+  console.error(err);
 });
 
 async function main () {
@@ -60,8 +63,8 @@ async function main () {
         cookie: {
           password: COOKIE_PASSWORD,
           domain: COOKIE_DOMAIN,
-          isSecure: false,
-          isHttpOnly: true,
+          isSecure: COOKIE_SECURE !== '0',
+          isHttpOnly: COOKIE_HTTP_ONLY !== '0',
           ttl: 1000 * 60 * 60 // 1 hour
         },
         sso: {

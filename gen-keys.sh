@@ -4,7 +4,7 @@ set -e -o pipefail
 TRITON_ACCOUNT=$(triton account get | awk -F": " '/id:/{print $2}')
 TRITON_DC=$(triton profile get | awk -F"/" '/url:/{print $3}' | awk -F'.' '{print $1}')
 
-DEFAULT_DOMAIN=${TRITON_ACCOUNT}.${TRITON_DC}.cns.triton.zone
+DEFAULT_DOMAIN=${TRITON_ACCOUNT}.${TRITON_DC}.triton.zone
 
 read -p "Enter the domain name you plan to use for this key [$DEFAULT_DOMAIN]: " domain
 domain="${domain:-$DEFAULT_DOMAIN}"
