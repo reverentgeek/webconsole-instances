@@ -1,15 +1,15 @@
 {
-  "name": "joyent-instance-console",
+  "name": "webconsole-instances",
   "version": "1.0.0",
   "private": true,
   "main": "index.js",
   "license": "MPL-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/joyent/instance-console.git"
+    "url": "git+https://github.com/joyent/webconsole-instances.git"
   },
   "bugs": {
-    "url": "https://github.com/joyent/instance-console/issues"
+    "url": "https://github.com/joyent/webconsole-instances/issues"
   },
   "engines": {
     "node": ">=8.9.0"

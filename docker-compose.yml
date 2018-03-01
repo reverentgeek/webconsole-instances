@@ -11,18 +11,18 @@ services:
     mem_limit: 512m
     network_mode: bridge
     labels:
-      - triton.cns.services=instance-console-consul
+      - triton.cns.services=webconsole-instances-consul
     expose:
       - 9090
       - 8500
 
-  instance-console:
-    image: cjihrig/instance-console:1.0.2
+  webconsole-instances:
+    image: cjihrig/webconsole-instances:1.0.0
     restart: always
     mem_limit: 1g
     network_mode: bridge
     labels:
-      - triton.cns.services=instance-console
+      - triton.cns.services=webconsole-instances
     env_file:
       - _env
       - _env_consul

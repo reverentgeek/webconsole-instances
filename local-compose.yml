@@ -11,7 +11,7 @@ consul:
     - 9090:9090
     - 8500:8500
 
-instance-console:
+webconsole-instances:
   build: ./
   restart: always
   mem_limit: 1g

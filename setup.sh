@@ -136,14 +136,14 @@ check() {
     rm -f _env
 
     echo '# Consul discovery via Triton CNS' >> _env_consul
-    echo CONSUL=instance-console-consul.svc.${TRITON_ACCOUNT}.${TRITON_DC}.joyent.com >> _env_consul
+    echo CONSUL=webconsole-instances-consul.svc.${TRITON_ACCOUNT}.${TRITON_DC}.joyent.com >> _env_consul
     echo CONSUL_AGENT=1 >> _env_consul
     echo >> _env_consul
 
     TRITON_CREDS_PATH=/root/.triton
 
     echo '# Site URL' >> _env
-    echo BASE_URL=https://instance-console.svc.${TRITON_ACCOUNT}.${TRITON_DC}.triton.zone >> _env
+    echo BASE_URL=https://webconsole-instances.svc.${TRITON_ACCOUNT}.${TRITON_DC}.triton.zone >> _env
     echo COOKIE_DOMAIN=triton.zone >> _env
     echo >> _env
 
@@ -156,7 +156,7 @@ check() {
     echo SDC_URL=${SDC_URL} >> _env
     echo SDC_ACCOUNT=${SDC_ACCOUNT} >> _env
     echo SDC_KEY_ID=${SDC_KEY_ID} >> _env
-    echo CONSUL=instance-console-consul.svc.${TRITON_ACCOUNT}.${TRITON_DC}.joyent.com >> _env
+    echo CONSUL=webconsole-instances-consul.svc.${TRITON_ACCOUNT}.${TRITON_DC}.joyent.com >> _env
 
     echo SDC_KEY=$(cat "${TRITON_PRIVATE_KEY_PATH}" | tr '\n' '#') >> _env
     echo SDC_KEY_PUB=$(cat "${TRITON_PRIVATE_KEY_PATH}".pub | tr '\n' '#') >> _env
