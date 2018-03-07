@@ -18,6 +18,10 @@ webconsole-instances:
   env_file:
     - _env
     - _env_consul
+  environment:
+    - CONSUL=CONSUL
+    - COOKIE_DOMAIN=localhost
+    - BASE_URL=https://localhost
   links:
     - consul:consul
   ports:

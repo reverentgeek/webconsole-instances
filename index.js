@@ -65,7 +65,7 @@ async function main () {
         cookieOptions: {
           isSecure: COOKIE_SECURE !== '0',
           domain: COOKIE_DOMAIN,
-          isHttpOnly: COOKIE_HTTP_ONLY !== '0',
+          isHttpOnly: false,
           ttl: 4000 * 60 * 60       // 4 hours
         }
       }

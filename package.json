@@ -22,7 +22,7 @@
     "cloudapi-gql": "7.1.1",
     "crumb": "7.0.0",
     "hapi": "17.2.2",
-    "hapi-triton-auth": "2.0.0",
+    "hapi-triton-auth": "2.0.1",
     "my-joy-instances": "2.1.9",
     "my-joy-navigation": "2.2.0",
     "rollover": "1.0.0"
