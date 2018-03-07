@@ -1,6 +1,7 @@
 'use strict';
 
 const Brule = require('brule');
+const Crumb = require('crumb');
 const Hapi = require('hapi');
 const Rollover = require('rollover');
 const { homedir } = require('os');
@@ -58,6 +59,18 @@ async function main () {
       }
     },
     {
+      plugin: Crumb,
+      options: {
+        restful: true,
+        cookieOptions: {
+          isSecure: COOKIE_SECURE !== '0',
+          domain: COOKIE_DOMAIN,
+          isHttpOnly: COOKIE_HTTP_ONLY !== '0',
+          ttl: 4000 * 60 * 60       // 4 hours
+        }
+      }
+    },
+    {
       plugin: Sso,
       options: {
         ssoUrl: 'https://sso.joyent.com/login',
@@ -71,7 +84,7 @@ async function main () {
           isHttpOnly: COOKIE_HTTP_ONLY !== '0',
           isSecure: COOKIE_SECURE !== '0',
           password: COOKIE_PASSWORD,
-          ttl: 1000 * 60 * 60, // 1 hour
+          ttl: 4000 * 60 * 60,       // 4 hours
           domain: COOKIE_DOMAIN
         }
       }
