@@ -10,8 +10,8 @@ process.env.SDC_KEY_PATH =
   process.env.SDC_KEY_PATH || join(homedir(), '.ssh/id_rsa');
 
 const Sso = require('hapi-triton-auth');
-const Ui = require('my-joy-beta');
-const Nav = require('joyent-navigation');
+const Ui = require('my-joy-instances');
+const Nav = require('my-joy-navigation');
 const Api = require('cloudapi-gql');
 
 const {
@@ -60,21 +60,19 @@ async function main () {
     {
       plugin: Sso,
       options: {
+        ssoUrl: 'https://sso.joyent.com/login',
+        baseUrl: BASE_URL,
+        apiBaseUrl: SDC_URL,
+        keyId: '/' + SDC_ACCOUNT + '/keys/' + SDC_KEY_ID,
+        keyPath: SDC_KEY_PATH,
+        permissions: { cloudapi: ['/my/*'] },
+        isDev: NODE_ENV === 'development',
         cookie: {
-          password: COOKIE_PASSWORD,
-          domain: COOKIE_DOMAIN,
-          isSecure: COOKIE_SECURE !== '0',
           isHttpOnly: COOKIE_HTTP_ONLY !== '0',
-          ttl: 1000 * 60 * 60 // 1 hour
-        },
-        sso: {
-          keyPath: SDC_KEY_PATH,
-          keyId: '/' + SDC_ACCOUNT + '/keys/' + SDC_KEY_ID,
-          apiBaseUrl: SDC_URL,
-          url: 'https://sso.joyent.com/login',
-          permissions: { cloudapi: ['/my/*'] },
-          baseUrl: BASE_URL,
-          isDev: NODE_ENV === 'development'
+          isSecure: COOKIE_SECURE !== '0',
+          password: COOKIE_PASSWORD,
+          ttl: 1000 * 60 * 60, // 1 hour
+          domain: COOKIE_DOMAIN
         }
       }
     },
@@ -85,7 +83,12 @@ async function main () {
       plugin: Ui
     },
     {
-      plugin: Api
+      plugin: Api,
+      options: {
+        keyId: '/' + SDC_ACCOUNT + '/keys/' + SDC_KEY_ID,
+        keyPath: SDC_KEY_PATH,
+        apiBaseUrl: SDC_URL
+      }
     }
   ]);
 
