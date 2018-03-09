@@ -16,8 +16,10 @@
   },
   "scripts": {
     "lint": "belly-button -f",
-    "pretest": "npm run lint",
-    "test": "lab -v -a code"
+    "pretest": "yarn run lint",
+    "test": "lab -v -a code",
+    "test-ci": "yarn run lint && lab -c -r junit -o test.xml -r html -o test.html -r console -o stdout"
+
   },
   "dependencies": {
     "brule": "3.1.0",

@@ -61,3 +61,5 @@ _env*
 
 keys-*/
 yarn.lock
+test.xml
+test.html
