@@ -17,7 +17,8 @@ describe('Instance Console', () => {
     const options = {
       env: {
         // Minimum environment needed for the server to start.
-        SDC_URL: 'https://us-sw-1.api.joyentcloud.com'
+        SDC_URL: 'https://us-sw-1.api.joyentcloud.com',
+        SDC_KEY_PATH: __filename  // No need for a real key to test server startup.
       }
     };
     const child = Cp.spawn(process.execPath,
