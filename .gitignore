@@ -63,3 +63,5 @@ keys-*/
 yarn.lock
 test.xml
 test.html
+
+.DS_Store
