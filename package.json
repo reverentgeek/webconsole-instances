@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "brule": "3.1.0",
-    "cloudapi-gql": "7.1.1",
+    "cloudapi-gql": "7.1.2",
     "crumb": "7.0.0",
     "hapi": "17.2.2",
     "hapi-triton-auth": "2.0.1",
