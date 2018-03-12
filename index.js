@@ -1,5 +1,8 @@
 'use strict';
 
+const Instana = require('instana-nodejs-sensor');
+Instana();
+
 const Brule = require('brule');
 const Crumb = require('crumb');
 const Hapi = require('hapi');

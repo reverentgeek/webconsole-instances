@@ -27,6 +27,7 @@
     "crumb": "7.0.0",
     "hapi": "17.2.2",
     "hapi-triton-auth": "2.0.1",
+    "instana-nodejs-sensor": "1.36.1",
     "my-joy-instances": "2.1.9",
     "my-joy-navigation": "2.2.0"
   },
