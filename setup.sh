@@ -170,8 +170,6 @@ check() {
     echo HEALTH_ENDPOINT=check-it-out >> _env
     echo NGINX_CONFIG=/etc/nginx/nginx.conf >> _env
     echo NODE_START=node index.js >> _env
-    # TODO: pass in a rollbar token if we decide to use rollbar.
-    echo ROLLBAR_SERVER_TOKEN=foobar >> _env
     echo >> _env
 }
 

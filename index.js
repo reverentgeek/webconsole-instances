@@ -3,7 +3,6 @@
 const Brule = require('brule');
 const Crumb = require('crumb');
 const Hapi = require('hapi');
-const Rollover = require('rollover');
 const { homedir } = require('os');
 const { join } = require('path');
 
@@ -26,7 +25,6 @@ const {
   SDC_KEY_ID,
   SDC_URL,
   BASE_URL = `http://0.0.0.0:${PORT}`,
-  ROLLBAR_SERVER_TOKEN,
   NODE_ENV = 'development'
 } = process.env;
 
@@ -43,15 +41,6 @@ process.on('unhandledRejection', (err) => {
 
 async function main () {
   await server.register([
-    {
-      plugin: Rollover,
-      options: {
-        rollbar: {
-          accessToken: ROLLBAR_SERVER_TOKEN,
-          reportLevel: 'error'
-        }
-      }
-    },
     {
       plugin: Brule,
       options: {
