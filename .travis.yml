@@ -5,4 +5,4 @@ node_js:
   - "9"
   - "node"
 before_script:
-  - yarn add nsp && node ./node_modules/.bin/nsp check --reporter summary
+  - npx nsp check --reporter summary
