@@ -6,7 +6,7 @@ services:
     command: >
       /usr/local/bin/containerpilot
     env_file:
-      - _env_consul
+      - .consul.env
     restart: always
     mem_limit: 512m
     network_mode: bridge
@@ -17,15 +17,15 @@ services:
       - 8500
 
   webconsole-instances:
-    image: cjihrig/webconsole-instances:1.0.0
+    image: joyent/webconsole-instances:1.0.0
     restart: always
     mem_limit: 1g
     network_mode: bridge
     labels:
       - triton.cns.services=webconsole-instances
     env_file:
-      - _env
-      - _env_consul
+      - .env
+      - .consul.env
     environment:
       - CONSUL=consul
       - NODE_ENV=production
@@ -33,4 +33,3 @@ services:
       - consul:consul
     ports:
       - 80:80
-      - 443:443

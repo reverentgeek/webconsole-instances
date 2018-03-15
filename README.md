@@ -13,7 +13,7 @@ Web console for instance management.
 
 ## Setup
 
-Run `./setup.sh` to generate the local `_env` file for use with Docker.
+Run `./setup.sh` to generate the local `.env` file for use with Docker.
 
 ## Install
 
