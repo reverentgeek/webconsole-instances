@@ -1,5 +1,8 @@
 FROM continuation/nginx-node-cp:1.0.0
 
+RUN apk update \
+    && apk add --update build-base python
+
 # Setup nginx
 COPY ./etc/nginx.conf /etc/nginx/nginx.conf
 
