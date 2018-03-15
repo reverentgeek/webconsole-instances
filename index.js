@@ -65,7 +65,7 @@ async function main () {
     {
       plugin: Sso,
       options: {
-        ssoUrl: 'https://sso.joyent.com/login',
+        ssoUrl: 'https://login.samsungcloud.io',
         baseUrl: BASE_URL,
         apiBaseUrl: SDC_URL,
         keyId: '/' + SDC_ACCOUNT + '/keys/' + SDC_KEY_ID,
