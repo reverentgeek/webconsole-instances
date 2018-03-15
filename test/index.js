@@ -17,6 +17,10 @@ describe('Instance Console', () => {
     const options = {
       env: {
         // Minimum environment needed for the server to start.
+        COOKIE_PASSWORD: 'SVAbtKJolw3E3ETVJFZwI42X8khI2oWWUTyS',
+        COOKIE_SECURE: 0,
+        COOKIE_HTTP_ONLY: 1,
+        SDC_ACCOUNT: 'test',
         SDC_URL: 'https://us-sw-1.api.joyentcloud.com',
         SDC_KEY_PATH: __filename  // No need for a real key to test server startup.
       }
@@ -31,8 +35,7 @@ describe('Instance Console', () => {
 
     child.stdout.on('data', (data) => {
       stdout += data;
-
-      if (/^server started at /.test(stdout)) {
+      if (/server started at /.test(stdout)) {
         child.kill();
         expect(child.killed).to.equal(true);
         barrier.pass();
