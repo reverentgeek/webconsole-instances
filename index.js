@@ -65,7 +65,7 @@ async function main () {
     {
       plugin: Sso,
       options: {
-        ssoUrl: 'https://login.samsungcloud.io',
+        ssoUrl: 'https://login.samsungcloud.io/login',
         baseUrl: BASE_URL,
         apiBaseUrl: SDC_URL,
         keyId: '/' + SDC_ACCOUNT + '/keys/' + SDC_KEY_ID,
