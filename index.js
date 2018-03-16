@@ -33,7 +33,7 @@ const {
 
 const server = Hapi.server({
   port: PORT,
-  host: '127.0.0.1',
+  host: '0.0.0.0',
   debug: { request: ['error'] }
 });
 
