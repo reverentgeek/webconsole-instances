@@ -14,11 +14,10 @@ process.env.SDC_KEY_PATH =
 
 const Sso = require('hapi-triton-auth');
 const Ui = require('my-joy-instances');
-const Nav = require('my-joy-navigation');
 const Api = require('cloudapi-gql');
 
 const {
-  PORT = 3069,
+  PORT = 8081,
   COOKIE_PASSWORD,
   COOKIE_DOMAIN,
   COOKIE_SECURE,
@@ -80,9 +79,6 @@ async function main () {
           domain: COOKIE_DOMAIN
         }
       }
-    },
-    {
-      plugin: Nav
     },
     {
       plugin: Ui

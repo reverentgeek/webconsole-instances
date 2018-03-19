@@ -7,6 +7,3 @@ echo -e "${SDC_KEY}" | tr '#' '\n' > ~/.ssh/id_rsa
 chmod 400 ~/.ssh/id_rsa.pub
 chmod 400 ~/.ssh/id_rsa
 ssh-add ~/.ssh/id_rsa
-
-# Expand env vars in nginx config.
-node /bin/expand-envvars.js

@@ -24,7 +24,9 @@ webconsole-instances:
     - COOKIE_DOMAIN=localhost
     - COOKIE_SECURE=0
     - BASE_URL=http://localhost
+    - NODE_ENV=development
+    - PORT=8081
   links:
     - consul:consul
   ports:
-    - 80:80
+    - 8081:8081
