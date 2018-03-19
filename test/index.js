@@ -26,7 +26,7 @@ describe('Instance Console', () => {
       }
     };
     const child = Cp.spawn(process.execPath,
-      [Path.resolve(__dirname, '..', 'index.js')], options);
+      [Path.resolve(__dirname, '..', 'server.js')], options);
     let stdout = '';
 
     child.stdout.setEncoding('utf8');

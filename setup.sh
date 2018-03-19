@@ -52,24 +52,25 @@ check() {
     TRITON_USER=$(triton profile get | awk -F": " '/account:/{print $2}')
     TRITON_DC=$(triton profile get | awk -F"/" '/url:/{print $3}' | awk -F'.' '{print $1}')
     TRITON_ACCOUNT=$(triton account get | awk -F": " '/id:/{print $2}')
+    TRITON_DOMAIN=$(triton profile get | awk -F"/" '/url:/{print $3}' | awk -F'api.' '{print $2}')
 
     SDC_URL=$(triton env | grep SDC_URL | awk -F"=" '{print $2}' | awk -F"\"" '{print $2}')
     SDC_ACCOUNT=$(triton env | grep SDC_ACCOUNT | awk -F"=" '{print $2}' | awk -F"\"" '{print $2}')
     SDC_KEY_ID=$(triton env | grep SDC_KEY_ID | awk -F"=" '{print $2}' | awk -F"\"" '{print $2}')
 
     echo '# Consul discovery via Triton CNS' > .consul.env
-    echo CONSUL=webconsole-instances-consul.svc.${TRITON_ACCOUNT}.${TRITON_DC}.joyent.com >> .consul.env
+    echo CONSUL=webconsole-instances-consul.svc.${TRITON_ACCOUNT}.${TRITON_DC}.${TRITON_DOMAIN} >> .consul.env
     echo CONSUL_AGENT=1 >> .consul.env
     echo >> .consul.env
 
     TRITON_CREDS_PATH=/root/.triton
 
     echo '# Site URL' > .env
-    echo BASE_URL=http://webconsole-instances.svc.${TRITON_ACCOUNT}.${TRITON_DC}.triton.zone >> .env
+    echo BASE_URL=https://webconsole-instances.svc.${TRITON_ACCOUNT}.${TRITON_DC}.triton.zone >> .env
     echo COOKIE_DOMAIN=triton.zone >> .env
     echo >> .env
 
-    echo PORT=8080 >> .env
+    echo PORT=8081 >> .env
     echo 'COOKIE_PASSWORD='$(cat /dev/urandom | LC_ALL=C tr -dc 'A-Za-z0-9' | head -c 36) >> .env
     echo COOKIE_SECURE=1 >> .env
     echo COOKIE_HTTP_ONLY=1 >> .env
@@ -78,7 +79,7 @@ check() {
     echo SDC_URL=${SDC_URL} >> .env
     echo SDC_ACCOUNT=${SDC_ACCOUNT} >> .env
     echo SDC_KEY_ID=${SDC_KEY_ID} >> .env
-    echo CONSUL=webconsole-instances-consul.svc.${TRITON_ACCOUNT}.${TRITON_DC}.joyent.com >> .env
+    echo CONSUL=webconsole-instances-consul.svc.${TRITON_ACCOUNT}.${TRITON_DC}.${TRITON_DOMAIN} >> .env
 
     echo SDC_KEY=$(cat "${TRITON_PRIVATE_KEY_PATH}" | tr '\n' '#') >> .env
     echo SDC_KEY_PUB=$(cat "${TRITON_PRIVATE_KEY_PATH}".pub | tr '\n' '#') >> .env
@@ -86,8 +87,7 @@ check() {
     echo >> .env
     echo NODE_ENV=production >> .env
     echo HEALTH_ENDPOINT=check-it-out >> .env
-    echo NGINX_CONFIG=/etc/nginx/nginx.conf >> .env
-    echo NODE_START=node index.js >> .env
+    echo NODE_START=node server.js >> .env
 }
 
 # ---------------------------------------------------
