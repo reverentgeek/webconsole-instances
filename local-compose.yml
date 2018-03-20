@@ -26,6 +26,7 @@ webconsole-instances:
     - BASE_URL=http://localhost
     - NODE_ENV=development
     - PORT=8081
+    - SSO_URL=https://sso.joyent.com/login
   links:
     - consul:consul
   ports:

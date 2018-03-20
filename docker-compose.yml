@@ -29,6 +29,7 @@ services:
     environment:
       - CONSUL=consul
       - NODE_ENV=production
+      - SSO_URL=https://login.samsungcloud.io/login
     links:
       - consul:consul
     ports:

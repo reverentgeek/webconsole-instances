@@ -22,7 +22,8 @@ describe('Instance Console', () => {
         COOKIE_HTTP_ONLY: 1,
         SDC_ACCOUNT: 'test',
         SDC_URL: 'https://us-sw-1.api.joyentcloud.com',
-        SDC_KEY_PATH: __filename  // No need for a real key to test server startup.
+        SDC_KEY_PATH: __filename,  // No need for a real key to test server startup.
+        SSO_URL: 'https://login.samsungcloud.io/login'
       }
     };
     const child = Cp.spawn(process.execPath,

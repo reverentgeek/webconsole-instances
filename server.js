@@ -26,6 +26,7 @@ const {
   SDC_ACCOUNT,
   SDC_KEY_ID,
   SDC_URL,
+  SSO_URL,
   BASE_URL = `http://0.0.0.0:${PORT}`,
   NODE_ENV = 'development'
 } = process.env;
@@ -64,7 +65,7 @@ async function main () {
     {
       plugin: Sso,
       options: {
-        ssoUrl: 'https://login.samsungcloud.io/login',
+        ssoUrl: SSO_URL,
         baseUrl: BASE_URL,
         apiBaseUrl: SDC_URL,
         keyId: '/' + SDC_ACCOUNT + '/keys/' + SDC_KEY_ID,
