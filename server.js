@@ -28,7 +28,8 @@ const {
   SDC_URL,
   SSO_URL,
   BASE_URL = `http://0.0.0.0:${PORT}`,
-  NODE_ENV = 'development'
+  NODE_ENV = 'development',
+  NAMESPACE = 'instances'
 } = process.env;
 
 const server = Hapi.server({
@@ -90,6 +91,9 @@ async function main () {
         keyId: '/' + SDC_ACCOUNT + '/keys/' + SDC_KEY_ID,
         keyPath: SDC_KEY_PATH,
         apiBaseUrl: SDC_URL
+      },
+      routes: {
+        prefix: `/${NAMESPACE}`
       }
     }
   ]);
