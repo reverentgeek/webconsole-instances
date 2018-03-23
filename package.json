@@ -27,7 +27,7 @@
     "hapi": "17.2.3",
     "hapi-triton-auth": "2.0.1",
     "instana-nodejs-sensor": "1.37.0",
-    "my-joy-instances": "2.2.6"
+    "my-joy-instances": "2.3.0"
   },
   "devDependencies": {
     "belly-button": "4.x.x",
