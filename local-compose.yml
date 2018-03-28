@@ -1,33 +1,15 @@
-consul:
-  image: autopilotpattern/consul:1.0.0r43
-  command: >
-    /usr/local/bin/containerpilot
-  environment:
-   - CONSUL_DEV=1
-   - CONSUL=localhost
-   - CONSUL_DATACENTER_NAME=dc1
-  restart: always
-  mem_limit: 512m
-  ports:
-    - 9090
-    - 8500
-
 webconsole-instances:
   build: ./
   restart: always
   mem_limit: 1g
   env_file:
     - .env
-    - .consul.env
   environment:
-    - CONSUL=CONSUL
     - COOKIE_DOMAIN=localhost
     - COOKIE_SECURE=0
     - BASE_URL=http://localhost
     - NODE_ENV=development
     - PORT=8081
     - SSO_URL=https://sso.joyent.com/login
-  links:
-    - consul:consul
   ports:
     - 8081:8081

@@ -56,7 +56,6 @@ typings/
 
 # Various environment variable files
 .env
-.consul.env
 .env.js
 _env*
 
