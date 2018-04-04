@@ -15,24 +15,28 @@
     "node": ">=8.9.0"
   },
   "scripts": {
+    "dev": "node -r dotenv/config server.js dotenv_config_path=../.env",
     "lint": "belly-button -f",
     "pretest": "yarn run lint",
     "test": "lab -v -a code",
     "test-ci": "yarn run lint && lab -m 10000 -c -r junit -o test.xml -r html -o test.html -r console -o stdout"
   },
   "dependencies": {
+    "blankie": "4.0.0",
     "brule": "3.1.0",
     "cloudapi-gql": "7.1.4",
     "crumb": "7.0.0",
     "hapi": "17.2.3",
     "hapi-triton-auth": "2.0.1",
     "instana-nodejs-sensor": "1.37.1",
-    "my-joy-instances": "2.3.2"
+    "my-joy-instances": "2.3.2",
+    "scooter": "5.0.0"
   },
   "devDependencies": {
     "belly-button": "4.x.x",
     "cb-barrier": "1.x.x",
     "code": "5.x.x",
+    "dotenv": "5.x.x",
     "lab": "15.x.x"
   },
   "resolutions": {

@@ -3,18 +3,21 @@
 const Instana = require('instana-nodejs-sensor');
 Instana();
 
-const Brule = require('brule');
-const Crumb = require('crumb');
-const Hapi = require('hapi');
+// Core Node.js modules
 const { homedir } = require('os');
 const { join } = require('path');
 
-process.env.SDC_KEY_PATH =
-  process.env.SDC_KEY_PATH || join(homedir(), '.ssh/id_rsa');
-
+const Blankie = require('blankie');
+const Brule = require('brule');
+const Api = require('cloudapi-gql');
+const Crumb = require('crumb');
+const Hapi = require('hapi');
+const Scooter = require('scooter');
 const Sso = require('hapi-triton-auth');
 const Ui = require('my-joy-instances');
-const Api = require('cloudapi-gql');
+
+process.env.SDC_KEY_PATH =
+  process.env.SDC_KEY_PATH || join(homedir(), '.ssh/id_rsa');
 
 const {
   PORT = 8081,
@@ -35,7 +38,16 @@ const {
 const server = Hapi.server({
   port: PORT,
   host: '0.0.0.0',
-  debug: { request: ['error'] }
+  debug: { request: ['error'] },
+  routes: {
+    security: {
+      hsts: true,
+      xframe: 'deny',
+      xss: true,
+      noOpen: true,
+      noSniff: true
+    }
+  }
 });
 
 process.on('unhandledRejection', (err) => {
@@ -61,6 +73,19 @@ async function main () {
           isHttpOnly: false,
           ttl: 4000 * 60 * 60       // 4 hours
         }
+      }
+    },
+    {
+      plugin: Scooter
+    },
+    {
+      plugin: Blankie.plugin,
+      options: {
+        defaultSrc: ['self'],
+        imgSrc: '*',
+        scriptSrc: ['self', 'unsafe-inline'],
+        styleSrc: ['self', 'unsafe-inline'],
+        generateNonces: false
       }
     },
     {
