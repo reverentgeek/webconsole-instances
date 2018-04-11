@@ -13,6 +13,7 @@ const Api = require('cloudapi-gql');
 const Crumb = require('crumb');
 const Hapi = require('hapi');
 const Sso = require('hapi-triton-auth');
+const Metri = require('metri');
 const Inert = require('inert');
 const Ui = require('my-joy-instances');
 const Scooter = require('scooter');
@@ -121,6 +122,12 @@ async function main () {
         keyPath: SDC_KEY_PATH,
         apiBaseUrl: SDC_URL
       },
+      routes: {
+        prefix: `/${NAMESPACE}`
+      }
+    },
+    {
+      plugin: Metri,
       routes: {
         prefix: `/${NAMESPACE}`
       }
