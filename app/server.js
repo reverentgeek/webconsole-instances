@@ -136,7 +136,7 @@ async function main () {
       auth: false,
       handler: {
         file: {
-          path: join(__dirname, 'version.json')
+          path: join(__dirname, 'versions.json')
         }
       }
     }
