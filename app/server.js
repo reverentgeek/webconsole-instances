@@ -12,9 +12,10 @@ const Brule = require('brule');
 const Api = require('cloudapi-gql');
 const Crumb = require('crumb');
 const Hapi = require('hapi');
-const Scooter = require('scooter');
 const Sso = require('hapi-triton-auth');
+const Inert = require('inert');
 const Ui = require('my-joy-instances');
+const Scooter = require('scooter');
 
 process.env.SDC_KEY_PATH =
   process.env.SDC_KEY_PATH || join(homedir(), '.ssh/id_rsa');
@@ -76,6 +77,9 @@ async function main () {
       }
     },
     {
+      plugin: Inert
+    },
+    {
       plugin: Scooter
     },
     {
@@ -124,6 +128,19 @@ async function main () {
   ]);
 
   server.auth.default('sso');
+
+  server.route({
+    method: 'get',
+    path: `/${NAMESPACE}/versions`,
+    config: {
+      auth: false,
+      handler: {
+        file: {
+          path: join(__dirname, 'version.json')
+        }
+      }
+    }
+  });
 
   await server.start();
   console.log(`server started at http://localhost:${server.info.port}`);
