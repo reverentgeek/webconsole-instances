@@ -4,6 +4,7 @@ const Instana = require('instana-nodejs-sensor');
 Instana();
 
 // Core Node.js modules
+const Fs = require('fs');
 const { homedir } = require('os');
 const { join } = require('path');
 
@@ -12,6 +13,8 @@ const Brule = require('brule');
 const Api = require('cloudapi-gql');
 const Crumb = require('crumb');
 const Hapi = require('hapi');
+const HapiAuthSignature = require('hapi-auth-signi');
+const HttpSignature = require('http-signature');
 const Sso = require('hapi-triton-auth');
 const Metri = require('metri');
 const Inert = require('inert');
@@ -36,6 +39,8 @@ const {
   NODE_ENV = 'development',
   NAMESPACE = 'instances'
 } = process.env;
+
+const adminPublicKey = Fs.readFileSync(SDC_KEY_PATH + '.pub', 'utf8');
 
 const server = Hapi.server({
   port: PORT,
@@ -127,7 +132,24 @@ async function main () {
       }
     },
     {
+      plugin: HapiAuthSignature,
+      options: {
+        tenants: [
+          {
+            secret: COOKIE_PASSWORD,
+            key: HttpSignature.sshKeyToPEM(adminPublicKey),
+            algorithm: 'sha256',
+            format: 'base64',
+            authData: { credentials: { username: SDC_ACCOUNT } }
+          }
+        ]
+      }
+    },
+    {
       plugin: Metri,
+      options: {
+        auth: 'signature'
+      },
       routes: {
         prefix: `/${NAMESPACE}`
       }
