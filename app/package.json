@@ -15,7 +15,7 @@
     "node": ">=8.9.0"
   },
   "scripts": {
-    "dev": "node -r dotenv/config server.js dotenv_config_path=../.env",
+    "dev": "node -r dotenv/config --inspect server.js dotenv_config_path=../.env",
     "lint": "belly-button -f",
     "pretest": "yarn run lint",
     "test": "lab -v -a code",

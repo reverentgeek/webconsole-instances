@@ -52,7 +52,7 @@ const server = Hapi.server({
       xframe: 'deny',
       xss: true,
       noOpen: true,
-      noSniff: true
+      noSniff: false
     }
   }
 });
@@ -92,7 +92,7 @@ async function main () {
       plugin: Blankie.plugin,
       options: {
         defaultSrc: ['self'],
-        imgSrc: '*',
+        imgSrc: ['*', 'data:'],
         scriptSrc: ['self', 'unsafe-inline'],
         styleSrc: ['self', 'unsafe-inline'],
         generateNonces: false
