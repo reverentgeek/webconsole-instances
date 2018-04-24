@@ -43,7 +43,6 @@ const adminPublicKey = Fs.readFileSync(SDC_KEY_PATH + '.pub', 'utf8');
 const server = Hapi.server({
   port: PORT,
   host: '0.0.0.0',
-  debug: { request: ['error'] },
   routes: {
     security: {
       hsts: true,
@@ -57,6 +56,7 @@ const server = Hapi.server({
 
 process.on('unhandledRejection', (err) => {
   server.log(['error'], err);
+  console.error(err);
 });
 
 async function main () {
