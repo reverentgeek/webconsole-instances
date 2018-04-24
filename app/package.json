@@ -28,6 +28,7 @@
     "crumb": "7.0.0",
     "hapi": "17.2.3",
     "hapi-auth-signi": "0.1.0",
+    "hapi-pino": "4.0.x",
     "hapi-triton-auth": "2.0.1",
     "http-signature": "1.2.0",
     "inert": "5.1.0",

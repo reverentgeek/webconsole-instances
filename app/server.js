@@ -1,7 +1,7 @@
 'use strict';
 
 const Instana = require('instana-nodejs-sensor');
-Instana();
+// Instana();
 
 // Core Node.js modules
 const Fs = require('fs');
@@ -14,6 +14,7 @@ const Api = require('cloudapi-gql');
 const Crumb = require('crumb');
 const Hapi = require('hapi');
 const HapiAuthSignature = require('hapi-auth-signi');
+const HapiPino = require('hapi-pino');
 const HttpSignature = require('http-signature');
 const Sso = require('hapi-triton-auth');
 const Metri = require('metri');
@@ -40,6 +41,10 @@ const {
   NAMESPACE = 'instances'
 } = process.env;
 
+if (NODE_ENV === 'production') {
+  Instana();
+}
+
 const adminPublicKey = Fs.readFileSync(SDC_KEY_PATH + '.pub', 'utf8');
 
 const server = Hapi.server({
@@ -59,7 +64,6 @@ const server = Hapi.server({
 
 process.on('unhandledRejection', (err) => {
   server.log(['error'], err);
-  console.error(err);
 });
 
 async function main () {
@@ -146,6 +150,12 @@ async function main () {
       }
     },
     {
+      plugin: HapiPino,
+      options: {
+        prettyPrint: NODE_ENV !== 'production'
+      }
+    },
+    {
       plugin: Metri,
       options: {
         auth: 'signature'
@@ -172,7 +182,6 @@ async function main () {
   });
 
   await server.start();
-  console.log(`server started at http://localhost:${server.info.port}`);
 }
 
 main();
