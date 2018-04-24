@@ -1,7 +1,6 @@
 'use strict';
 
 const Instana = require('instana-nodejs-sensor');
-// Instana();
 
 // Core Node.js modules
 const Fs = require('fs');
