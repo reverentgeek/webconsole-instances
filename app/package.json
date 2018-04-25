@@ -32,7 +32,7 @@
     "hapi-triton-auth": "3.0.0",
     "http-signature": "1.2.0",
     "inert": "5.1.0",
-    "metri": "0.2.0",
+    "metri": "0.3.0",
     "my-joy-instances": "2.3.5",
     "scooter": "5.0.0"
   },
